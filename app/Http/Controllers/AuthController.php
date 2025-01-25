@@ -75,11 +75,11 @@ class AuthController extends Controller
 
 
 
-            $response = Http::asForm()->post('http://localhost:3183/oauth/token', [
+            $response = Http::asForm()->post(config('app.url').'/oauth/token', [
                 'grant_type' => 'password',
-                'client_id' => '1',
-                'client_secret' => 'ZcV5mBb4vrMXtj1vuxSCEq3JNYCutNTTmbyKUNbV',
-                'username' => $request->input('email'),
+		'client_id' => env('CLIENT_ID'),
+                'client_secret' => env('CLIENT_SECRET'),		
+		'username' => $request->input('email'),
                 'password' => $request->input('password'),
                 'scope' => '',
             ]);
