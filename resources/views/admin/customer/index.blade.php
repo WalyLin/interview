@@ -110,7 +110,7 @@
     const { createApp, ref, onMounted } = Vue
 
 
-    if(!localStorage.getItem('user-token')){
+    if (!localStorage.getItem('user-token')) {
         window.location.href = '/login';
     }
 
@@ -145,7 +145,7 @@
 
 
             const reload = () => {
-                if(!token.value){
+                if (!token.value) {
                     window.location.href = '/login';
                 }
 
@@ -164,7 +164,11 @@
 
             // 更新
             const update = (item) => {
-                item.dob = dayjs(item.dob).format('YYYY-MM-DD')
+                let dob = dayjs(item.dob).format('YYYY-MM-DD')
+                if (dayjs(item.dob).isValid()) {
+                    item.dob = dob
+                }
+
                 requestApi.customer.update(item).then(function (response) {
                     if (response.data.code == 200) {
                         antd.message.success('操作成功')
@@ -206,13 +210,13 @@
 
             // 新增
             const create = (item) => {
-                
+
                 let dob = dayjs(item.dob).format('YYYY-MM-DD');
-                if(dayjs(dob).isValid()){
+                if (dayjs(dob).isValid()) {
                     item.dob = dob;
                 }
-                
-                
+
+
                 requestApi.customer.create(item).then(function (response) {
                     if (response.data.code == 200) {
                         antd.message.success('操作成功')

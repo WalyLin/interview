@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use OpenApi\Annotations as OA;
-
+use Illuminate\Support\Facades\Validator;
 /**
  * @OA\Info(
  *     version="1.0.0",
@@ -110,7 +110,7 @@ class CustomerController extends Controller
             'first_name' => 'required|string|max:50',
             'last_name' => 'required|string|max:50',
             'email' => 'required|string|email|max:100|unique:customer,email',
-            'age' => 'required|integer|min:18|max:150',
+            'age' => 'required|integer|min:0|max:150',
             'dob' => 'required|date',
         ]);
 
@@ -165,7 +165,7 @@ class CustomerController extends Controller
             'first_name' => 'required|string|max:50',
             'last_name' => 'required|string|max:50',
             'email' => 'required|string|email|max:100|unique:customer,email,' . $request->input('id'),
-            'age' => 'required|integer|min:18|max:150',
+            'age' => 'required|integer|min:0|max:150',
             'dob' => 'required|date',
         ]);
 
@@ -213,10 +213,12 @@ class CustomerController extends Controller
      */
     public function delete(Request $request, $id)
     {
-        $validatedData = $request->validate([
+
+        Validator::make(['id' => $id], [
             'id' => 'required|integer|exists:customer,id',
         ]);
-        
+
+
         $id = intval($id);
         Customer::destroy([$id]);
         return $this->success();

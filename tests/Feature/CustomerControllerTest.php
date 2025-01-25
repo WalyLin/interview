@@ -83,6 +83,28 @@ class CustomerControllerTest extends TestCase
     }
 
     /**
+     * 测试新增客户时输入错误数据
+     *
+     * @return void
+     */
+    public function test_cannot_create_customer_with_invalid_data()
+    {
+        $invalidData = [
+            'first_name' => '', // 空字符串，假设这是无效的
+            'last_name' => $this->faker->lastName,
+            'email' => 'invalid-email', // 无效的电子邮件格式
+            'age' => 'invalid-age', // 无效的年龄格式
+            'dob' => 'invalid-date', // 无效的日期格式
+        ];
+
+        $user = User::factory()->create();
+        $response = $this->actingAs($user, 'api')->postJson('/api/customer/create', $invalidData);
+
+        $response->assertStatus(422) // 假设服务器返回422 Unprocessable Entity状态码
+            ->assertJsonValidationErrors(['first_name', 'email', 'age', 'dob']); // 验证返回的错误字段
+    }
+
+    /**
      * 测试修改客户
      *
      * @return void
@@ -120,6 +142,29 @@ class CustomerControllerTest extends TestCase
             'age' => $data['age'],
             'dob' => $data['dob'],
         ]);
+    }
+
+    /**
+     * 测试更新客户时输入错误数据
+     *
+     * @return void
+     */
+    public function test_cannot_update_customer_with_invalid_data()
+    {
+        $invalidData = [
+            'id' => 'a',
+            'first_name' => '', // 空字符串，假设这是无效的
+            'last_name' => $this->faker->lastName,
+            'email' => 'invalid-email', // 无效的电子邮件格式
+            'age' => 'invalid-age', // 无效的年龄格式
+            'dob' => 'invalid-date', // 无效的日期格式
+        ];
+
+        $user = User::factory()->create();
+        $response = $this->actingAs($user, 'api')->putJson('/api/customer/update', $invalidData);
+
+        $response->assertStatus(422) // 假设服务器返回422 Unprocessable Entity状态码
+            ->assertJsonValidationErrors(['first_name', 'email', 'age', 'dob', 'id']); // 验证返回的错误字段
     }
 
     /**
