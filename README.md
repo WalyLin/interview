@@ -24,7 +24,6 @@ php artisan passport:client --password
 CLIENT_ID=Client ID
 CLIENT_SECRET= Client secret
 ```
-	api文档地址：http://app_url/api/documentation
 
 
 设置权限
@@ -61,3 +60,10 @@ server {
 }
 ```
 
+地址：
+
+```
+ 登陆页： http://app_url/login
+ api文档页：http://app_url/api/documentation
+ customer列表页： http://app_url/api/customer
+```
