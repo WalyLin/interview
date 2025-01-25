@@ -1,0 +1,467 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Documentation",
+        "description": "API Documentation for My Laravel Application",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3183",
+            "description": "API Server"
+        }
+    ],
+    "paths": {
+        "/api/customers": {
+            "get": {
+                "tags": [
+                    "Customer"
+                ],
+                "summary": "获取客户列表",
+                "description": "显示客户列表",
+                "operationId": "8911b0e01ec877cafbd78bfe82495ec9",
+                "responses": {
+                    "200": {
+                        "description": "成功获取客户列表",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "操作成功"
+                                        },
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "code": {
+                                            "type": "integer",
+                                            "example": 200
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "first_name": {
+                                                        "type": "string",
+                                                        "example": "张三"
+                                                    },
+                                                    "last_name": {
+                                                        "type": "string",
+                                                        "example": "李四"
+                                                    },
+                                                    "email": {
+                                                        "type": "string",
+                                                        "format": "email",
+                                                        "example": "zhangsan@example.com"
+                                                    },
+                                                    "age": {
+                                                        "type": "integer",
+                                                        "example": 30
+                                                    },
+                                                    "dob": {
+                                                        "type": "string",
+                                                        "format": "date",
+                                                        "example": "1993-01-01"
+                                                    },
+                                                    "creation_date": {
+                                                        "type": "string",
+                                                        "format": "date-time",
+                                                        "example": "2023-01-01T00:00:00Z"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/customer/create": {
+            "post": {
+                "tags": [
+                    "Customer"
+                ],
+                "summary": "新增客户",
+                "description": "新增客户",
+                "operationId": "9fbf03ceaed243c003be20c80b6d2ac5",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "first_name": {
+                                        "type": "string",
+                                        "example": "张三"
+                                    },
+                                    "last_name": {
+                                        "type": "string",
+                                        "example": "李四"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "zhangsan@example.com"
+                                    },
+                                    "age": {
+                                        "type": "integer",
+                                        "example": 30
+                                    },
+                                    "dob": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "1993-01-01"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "客户新增成功",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "操作成功"
+                                        },
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "code": {
+                                            "type": "integer",
+                                            "example": 200
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "操作失败",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "操作失败"
+                                        },
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "code": {
+                                            "type": "integer",
+                                            "example": 500
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/customer/update": {
+            "put": {
+                "tags": [
+                    "Customer"
+                ],
+                "summary": "修改客户",
+                "description": "修改客户",
+                "operationId": "8e55c6ca47a9ef91caffe2df6a97c5fc",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "first_name": {
+                                        "type": "string",
+                                        "example": "张三"
+                                    },
+                                    "last_name": {
+                                        "type": "string",
+                                        "example": "李四"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "zhangsan@example.com"
+                                    },
+                                    "age": {
+                                        "type": "integer",
+                                        "example": 30
+                                    },
+                                    "dob": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "1993-01-01"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "客户修改成功",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "操作成功"
+                                        },
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "code": {
+                                            "type": "integer",
+                                            "example": 200
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "操作失败",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "操作失败"
+                                        },
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "code": {
+                                            "type": "integer",
+                                            "example": 500
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/customer/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "Customer"
+                ],
+                "summary": "删除客户",
+                "description": "删除客户",
+                "operationId": "80c0d91c1cb9cc8dac03115a83fd2129",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "客户ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "客户删除成功",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "操作成功"
+                                        },
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "code": {
+                                            "type": "integer",
+                                            "example": 200
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "操作失败",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "操作失败"
+                                        },
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "code": {
+                                            "type": "integer",
+                                            "example": 500
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/customer/read/{id}": {
+            "get": {
+                "tags": [
+                    "Customer"
+                ],
+                "summary": "获取客户详情",
+                "description": "获取客户详情",
+                "operationId": "429fb08f2df0a84370ae98894b74cc25",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "客户ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功获取客户详情",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "操作成功"
+                                        },
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "code": {
+                                            "type": "integer",
+                                            "example": 200
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "first_name": {
+                                                    "type": "string",
+                                                    "example": "张三"
+                                                },
+                                                "last_name": {
+                                                    "type": "string",
+                                                    "example": "李四"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "format": "email",
+                                                    "example": "zhangsan@example.com"
+                                                },
+                                                "age": {
+                                                    "type": "integer",
+                                                    "example": 30
+                                                },
+                                                "dob": {
+                                                    "type": "string",
+                                                    "format": "date",
+                                                    "example": "1993-01-01"
+                                                },
+                                                "creation_date": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2023-01-01T00:00:00Z"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "客户未找到",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "code": {
+                                            "type": "integer",
+                                            "example": 404
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Customer not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Customer",
+            "description": "Customer"
+        }
+    ]
+}
